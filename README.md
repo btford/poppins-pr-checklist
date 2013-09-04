@@ -2,7 +2,7 @@
 
 Mary Poppins plugin for responding to new PRs with a checklist of PR guidelines in a Github comment.
 
-![poppins in action](https://raw.github.com/btford/poppins/master/img/in-action.jpg)
+![poppins in action](https://raw.github.com/btford/poppins-pr-checklist/master/img/in-action.png)
 
 
 ## Install
@@ -16,6 +16,7 @@ To use this plugin, you need to lead it in your config file with [`couldYouPleas
 
 
 ```javascript
+// config.js
 module.exports = function (poppins) {
 
   poppins.config = { /*...*/ };
@@ -63,7 +64,7 @@ var myCheck = {
 ```
 
 
-## Checklist plugins
+## Checklist Plugins
 
 Because checks are just objects in the `poppins.plugins.prChecklist.checks` array, you can make a plugin that add new checks by appending to that array.
 
@@ -79,7 +80,7 @@ module.exports = function (poppins) {
 Then you can load this module like you would any other:
 
 ```javascript
-// in your config file:
+// config.js:
 module.exports = function (poppins) {
   poppins.couldYouPlease('pr-checklist');
   poppins.couldYouPlease('my-check');
