@@ -12,8 +12,7 @@ Mary Poppins plugin for responding to new PRs with a checklist of PR guidelines 
 
 ## Configure
 
-To use this plugin, you need to lead it in your config file with [`couldYouPlease`]()
-
+To use this plugin, you need to lead it in your config file with `couldYouPlease`:
 
 ```javascript
 // config.js
@@ -31,6 +30,9 @@ module.exports = function (poppins) {
   poppins.plugins.prChecklist.closing = 'Farewell';
 };
 ```
+
+By default, Mary Poppins will only respond with a greeting and closing.
+You have to configure her [checks](https://github.com/btford/poppins-pr-checklist#poppinspluginsprchecklistchecks) to get a list.
 
 
 ### `poppins.plugins.prChecklist.greeting`
@@ -89,4 +91,7 @@ module.exports = function (poppins) {
 
 It's plugins all the way down!
 
-See [poppins-check-cla] and [poppins-ckeck-commit] for an example.
+See [poppins-check-cla](https://github.com/btford/poppins-check-cla) and [poppins-check-commit](https://github.com/btford/poppins-check-commit) for an example.
+
+# License
+MIT
