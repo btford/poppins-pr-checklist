@@ -12,7 +12,7 @@ Mary Poppins plugin for responding to new PRs with a checklist of PR guidelines 
 
 ## Configure
 
-To use this plugin, you need to lead it in your config file with `couldYouPlease`:
+To use this plugin, you need to load it in your config file with `couldYouPlease`:
 
 ```javascript
 // config.js
