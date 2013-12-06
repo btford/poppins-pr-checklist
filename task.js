@@ -1,12 +1,12 @@
 var _ = require('lodash');
 var Q = require('q');
 
-var poppins, prPlugin;
+var poppins, prChecklist;
 
 module.exports = function initPlugin (pop) {
   poppins = pop;
 
-  prPlugin = poppins.plugins.pr = _.defaults(poppins.plugins.pr, {
+  prChecklist = poppins.plugins.prChecklist = _.defaults(poppins.plugins.prChecklist || {}, {
 
     responseBody: responseBody,
 
@@ -26,7 +26,7 @@ module.exports = function initPlugin (pop) {
 function respondToPullRequest (data) {
   var number = data.pull_request.number;
 
-  return prPlugin.responseBody(data).
+  return prChecklist.responseBody(data).
     then(function (body) {
       return poppins.createComment(number, body);
     }).
@@ -37,9 +37,9 @@ function respondToPullRequest (data) {
 
 function responseBody (data) {
   return Q.all([
-    prPlugin.greeting,
-    prPlugin.checklist(data),
-    prPlugin.closing
+    prChecklist.greeting,
+    prChecklist.checklist(data),
+    prChecklist.closing
   ]).
   then(function (paragraphs) {
     return paragraphs.join('\n\n');
@@ -48,11 +48,11 @@ function responseBody (data) {
 
 function checklist (data) {
   return Q.all([
-    prPlugin.
+    prChecklist.
       checks.
       map(function (check) {
         return check.condition(data).then(function (condition) {
-          return prPlugin.checkbox(condition) + check.message;
+          return prChecklist.checkbox(condition) + check.message;
         });
       })
     ]).
