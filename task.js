@@ -48,7 +48,7 @@ function responseBody (data) {
 
 function checklist (data) {
   return Q.all(prChecklist.checks.map(function (check) {
-      return check.condition(data).then(function (condition) {
+      return Q(check.condition(data)).then(function (condition) {
         return prChecklist.checkbox(condition) + check.message;
       });
     })).
