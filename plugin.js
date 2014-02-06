@@ -48,7 +48,7 @@ function responseBody (data) {
 
 function checklist (data) {
   return Q.all(prChecklist.checks.map(function (check) {
-      return check.condition(data).then(function (condition) {
+      return Q(check.condition(data)).then(function (condition) {
         // if the condition is a string, it explains why the box is unchecked
         // if it's an empty string, the box should be checked
         // if it's bool, true = checked, false = unchecked
