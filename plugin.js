@@ -17,8 +17,7 @@ module.exports = function initPlugin (pop) {
     good: 'Thanks for the PR! Looks good.',
 
     // markdown utils
-    checklist: checklist,
-    checkbox: checkbox
+    checklist: checklist
 
   });
 
@@ -38,7 +37,7 @@ function respondToPullRequest (data) {
 }
 
 function responseBody (data) {
-  prChecklist.checklist(data).then(function (list) {
+  return prChecklist.checklist(data).then(function (list) {
     return list ? Q.all([prChecklist.greeting, list, prChecklist.closing]) : [prChecklist.good]
   }).
   then(function (paragraphs) {
