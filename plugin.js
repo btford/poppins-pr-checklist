@@ -14,7 +14,7 @@ module.exports = function initPlugin (pop) {
     closing: 'Farewell.',
     checks: [],
 
-    good: 'Thanks for the PR! Looks good.'
+    good: 'Thanks for the PR! Looks good.',
 
     // markdown utils
     checklist: checklist,
