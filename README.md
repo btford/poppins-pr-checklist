@@ -46,6 +46,12 @@ Defaults to `"Greetings."`.
 String to start the response with.
 Defaults to `"Farewell."`.
 
+### `poppins.plugins.prChecklist.good`
+
+String to display on a commit that doesn't fail any validations.
+Defaults to `"Thanks for the PR! Looks good."`.
+If this is set to a falsy value then no comment will be created on a good commit.
+
 
 ### `poppins.plugins.prChecklist.checks`
 
