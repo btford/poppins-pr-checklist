@@ -29,7 +29,9 @@ function respondToPullRequest (data) {
 
   return prChecklist.responseBody(data).
     then(function (body) {
-      return poppins.createComment(number, body);
+      if (body !== "") {
+        return poppins.createComment(number, body);
+      }
     }).
     done(function () {
       poppins.emit('plugin:pr:done');
@@ -38,7 +40,15 @@ function respondToPullRequest (data) {
 
 function responseBody (data) {
   return prChecklist.checklist(data).then(function (list) {
-    return list ? Q.all([prChecklist.greeting, list, prChecklist.closing]) : [prChecklist.good]
+    if (list) {
+      return Q.all([prChecklist.greeting, list, prChecklist.closing]);
+    }
+
+    if (prChecklist.good) {
+      return [prChecklist.good];
+    }
+
+    return [];
   }).
   then(function (paragraphs) {
     return paragraphs.join('\n\n');
