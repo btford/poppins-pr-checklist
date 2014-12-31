@@ -1,3 +1,5 @@
+'use strict';
+
 var _ = require('lodash');
 var Q = require('q');
 
@@ -38,7 +40,15 @@ function respondToPullRequest (data) {
 
 function responseBody (data) {
   return prChecklist.checklist(data).then(function (list) {
-    return list ? Q.all([prChecklist.greeting, list, prChecklist.closing]) : [prChecklist.good]
+    function maybeCall (value) {
+      return _.isFunction(value) ? value(data) : value;
+    }
+
+    var greeting = maybeCall(prChecklist.greeting);
+    var closing = maybeCall(prChecklist.closing);
+    var good = maybeCall(prChecklist.good);
+
+    return list ? Q.all([greeting, list, closing]) : [good];
   }).
   then(function (paragraphs) {
     return paragraphs.join('\n\n');
